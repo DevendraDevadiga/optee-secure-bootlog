@@ -87,16 +87,16 @@ static void display_ca_usage(const char *ca_name)
 {
 	printf("#### TEE Secure Bootlog message ####\n");
 	printf("Usage: %s [-s|-S|--size] [-c|-C|--clear]\n", ca_name);
-	puts("  -s 	Display current bootlog message size\n"
-			"  -c 	Clear the boot log message in bootlog buffer\n");
+	puts("	-s	Display current bootlog message size\n"
+	"	-c	Clear the boot log message in bootlog buffer\n");
 
-	printf("Exmaple Usage: %s -s \n", ca_name);
-	printf("               %s -S \n", ca_name);
-	printf("               %s --size \n", ca_name);
-	printf("               %s -c \n", ca_name);
-	printf("               %s -C \n", ca_name);
-	printf("               %s --clear \n", ca_name);
-	printf("               %s  \n", ca_name);
+	printf("Exmaple Usage: %s -s\n", ca_name);
+	printf("               %s -S\n", ca_name);
+	printf("               %s --size\n", ca_name);
+	printf("               %s -c\n", ca_name);
+	printf("               %s -C\n", ca_name);
+	printf("               %s --clear\n", ca_name);
+	printf("               %s\n", ca_name);
 	exit(1);
 }
 
@@ -115,9 +115,9 @@ static void clear_bootlog(void)
 	op.paramTypes = TEEC_PARAM_TYPES(TEEC_NONE, TEEC_NONE,
 			TEEC_NONE, TEEC_NONE);
 
-	res = TEEC_InvokeCommand(&ctx.sess, TA_BOOT_LOG_CLEAR, &op, &err_origin);
-	if (res != TEEC_SUCCESS)
-	{
+	res = TEEC_InvokeCommand(&ctx.sess, TA_BOOT_LOG_CLEAR, &op,
+			&err_origin);
+	if (res != TEEC_SUCCESS) {
 		errx(1, "TEEC_InvokeCommand failed with code 0x%x origin 0x%x",
 				res, err_origin);
 	}
@@ -136,14 +136,16 @@ static uint32_t get_bootlog_msg_size(void)
 
 	initialize_tee_session(&ctx);
 
-	/* Get the current size of bootlog message which is stored in Secure memory*/
+	/* Get the current size of bootlog message which is
+	 * stored in Secure memory
+	 */
 	memset(&op, 0, sizeof(op));
 	op.paramTypes = TEEC_PARAM_TYPES(TEEC_VALUE_OUTPUT, TEEC_NONE,
 			TEEC_NONE, TEEC_NONE);
 
-	res = TEEC_InvokeCommand(&ctx.sess, TA_BOOT_LOG_GET_SIZE, &op, &err_origin);
-	if (res != TEEC_SUCCESS)
-	{
+	res = TEEC_InvokeCommand(&ctx.sess, TA_BOOT_LOG_GET_SIZE, &op,
+			&err_origin);
+	if (res != TEEC_SUCCESS) {
 		errx(1, "TEEC_InvokeCommand failed with code 0x%x origin 0x%x",
 				res, err_origin);
 		terminate_tee_session(&ctx);
@@ -167,16 +169,18 @@ static TEEC_Result get_bootlog_message(void)
 
 	initialize_tee_session(&ctx);
 
-	/* Get the current size of bootlog message which is stored in Secure memory*/
+	/* Get the current size of bootlog message which is
+	 * stored in Secure memory
+	 */
 	memset(&op, 0, sizeof(op));
 	op.paramTypes = TEEC_PARAM_TYPES(TEEC_VALUE_OUTPUT, TEEC_NONE,
 			TEEC_NONE, TEEC_NONE);
 
-	res = TEEC_InvokeCommand(&ctx.sess, TA_BOOT_LOG_GET_SIZE, &op, &err_origin);
-	if (res != TEEC_SUCCESS)
-	{
-		errx(1, "TEEC_InvokeCommand TA_BOOT_LOG_GET_SIZE failed with code 0x%x origin 0x%x",
-				res, err_origin);
+	res = TEEC_InvokeCommand(&ctx.sess, TA_BOOT_LOG_GET_SIZE, &op,
+			&err_origin);
+	if (res != TEEC_SUCCESS) {
+		errx(1, "TEEC_InvokeCommand TA_BOOT_LOG_GET_SIZE failed
+				with code 0x%x origin 0x%x", res, err_origin);
 		terminate_tee_session(&ctx);
 		return res;
 	}
@@ -188,8 +192,7 @@ static TEEC_Result get_bootlog_message(void)
 	 */
 
 	res = TEEC_AllocateSharedMemory(&ctx.context, &bootlog_shm);
-	if (res != TEEC_SUCCESS)
-	{
+	if (res != TEEC_SUCCESS) {
 		errx(1, "TEEC_AllocateSharedMemory failed with code 0x%x", res);
 		terminate_tee_session(&ctx);
 		return res;
@@ -199,7 +202,7 @@ static TEEC_Result get_bootlog_message(void)
 
 	memset(&op, 0, sizeof(op));
 
-	op.paramTypes = TEEC_PARAM_TYPES (TEEC_MEMREF_WHOLE, TEEC_NONE,
+	op.paramTypes = TEEC_PARAM_TYPES(TEEC_MEMREF_WHOLE, TEEC_NONE,
 			TEEC_NONE, TEEC_NONE);
 
 	default_rx = bootlog_shm.buffer;
@@ -209,11 +212,11 @@ static TEEC_Result get_bootlog_message(void)
 	op.params[0].memref.offset = 0;
 	op.params[0].memref.size = bootlog_shm.size;
 
-	res = TEEC_InvokeCommand(&ctx.sess, TA_BOOT_LOG_GET_MSG, &op, &err_origin);
-	if (res != TEEC_SUCCESS)
-	{
-		errx(1, "TEEC_InvokeCommand TA_BOOT_LOG_GET_MSG failed with code 0x%x origin 0x%x",
-				res, err_origin);
+	res = TEEC_InvokeCommand(&ctx.sess, TA_BOOT_LOG_GET_MSG, &op,
+			&err_origin);
+	if (res != TEEC_SUCCESS) {
+		errx(1, "TEEC_InvokeCommand TA_BOOT_LOG_GET_MSG failed
+				with code 0x%x origin 0x%x", res, err_origin);
 		terminate_tee_session(&ctx);
 		return res;
 	}
@@ -238,31 +241,25 @@ int main(int argc, char *argv[])
 	if (argc > 2)
 		display_ca_usage(argv[0]);
 
-	if (argc == 2)
-	{
-		if (!strcmp(argv[1], "-s") || !strcmp(argv[1], "-S") || !strcmp(argv[1], "--size")) {
+	if (argc == 2) {
+		if (!strcmp(argv[1], "-s") || !strcmp(argv[1], "-S")
+				|| !strcmp(argv[1], "--size")) {
 			bootlog_size = get_bootlog_msg_size();
-			printf("Current bootlog message size is : %d\n", bootlog_size);
-			return 0;
-		}
-		else if (!strcmp(argv[1], "-c") || !strcmp(argv[1], "-C") || !strcmp(argv[1], "--clear")) {
+			printf("Current bootlog message size is : %d\n",
+					bootlog_size);
+		} else if (!strcmp(argv[1], "-c") || !strcmp(argv[1], "-C")
+				|| !strcmp(argv[1], "--clear")) {
 			clear_bootlog();
-			return 0;
-		}
-		else
-		{
+		} else {
 			display_ca_usage(argv[0]);
 		}
-	}
-	else
-	{
+	} else {
 		res = get_bootlog_message();
-		if (res != TEEC_SUCCESS)
-		{
-			errx(1, "get_bootlog_message failed with code 0x%x", res);
+		if (res != TEEC_SUCCESS) {
+			errx(1, "get_bootlog_message failed with code 0x%x",
+					res);
 			return -1;
 		}
-
 	}
 
 	return 0;

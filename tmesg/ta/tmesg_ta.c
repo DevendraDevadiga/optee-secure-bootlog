@@ -79,8 +79,8 @@ TEE_Result TA_OpenSessionEntryPoint (uint32_t param_types,
 	 * The DMSG() macro is non-standard, TEE Internal API doesn't
 	 * specify any means to logging from a TA.
 	 */
-	res = TEE_OpenTASession (&pta_bootlog_uuid, 0, exp_param_types, params, &bootlog_pta_sess,\
-			&origin);
+	res = TEE_OpenTASession(&pta_bootlog_uuid, 0, exp_param_types,
+			params, &bootlog_pta_sess, &origin);
 	if (res != TEE_SUCCESS) {
 		EMSG("TEE_OpenTASession returned 0x%x\n",
 				(unsigned int)res);
@@ -102,18 +102,9 @@ void TA_CloseSessionEntryPoint(void *sess_ctx)
 	DMSG("Bootlog TA Session Closed!\n");
 }
 
-/*
- * Brief:
- *		# Function to get the bootlog messages.
- * Input:
- *		# param_types - Type(Input/Output) of each of the Parameters.
- *		# params	  - Intput/Ouput Parameters to bootlog PTA
- *			[out] params[0].memref.buffer - Buffer to receive the bootlog messages.
- *			[in/out] params[0].memref.size   - Size of Buffer
- */
 static TEE_Result get_bootlog_message(uint32_t param_types, TEE_Param params[4])
 {
-	uint32_t exp_param_types = TEE_PARAM_TYPES (TEE_PARAM_TYPE_MEMREF_OUTPUT,
+	uint32_t exp_param_types = TEE_PARAM_TYPES(TEE_PARAM_TYPE_MEMREF_OUTPUT,
 			TEE_PARAM_TYPE_NONE,
 			TEE_PARAM_TYPE_NONE,
 			TEE_PARAM_TYPE_NONE);
@@ -122,11 +113,10 @@ static TEE_Result get_bootlog_message(uint32_t param_types, TEE_Param params[4])
 	uint32_t origin;
 
 	if (param_types != exp_param_types)
-	{
 		return TEE_ERROR_BAD_PARAMETERS;
-	}
 
-	res = TEE_InvokeTACommand (bootlog_pta_sess, 0, PTA_BOOT_LOG_GET_MSG, exp_param_types, params, &origin);
+	res = TEE_InvokeTACommand(bootlog_pta_sess, 0, PTA_BOOT_LOG_GET_MSG,
+			exp_param_types, params, &origin);
 
 	if (res != TEE_SUCCESS) {
 		EMSG("TEE_InvokeTACommand returned 0x%x\n",
@@ -152,11 +142,12 @@ static TEE_Result get_bootlog_size(uint32_t param_types, TEE_Param params[4])
 		return TEE_ERROR_BAD_PARAMETERS;
 	}
 
-	res = TEE_InvokeTACommand (bootlog_pta_sess, 0, PTA_BOOT_LOG_GET_SIZE, exp_param_types, params, &origin);
+	res = TEE_InvokeTACommand(bootlog_pta_sess, 0, PTA_BOOT_LOG_GET_SIZE,
+			exp_param_types, params, &origin);
 
 	if (res != TEE_SUCCESS) {
-		EMSG("ERROR: TA PTA_GET_BOOT_LOG_SZ TEE_InvokeTACommand returned 0x%x\n",
-				(unsigned int)res);
+		EMSG("ERROR: TA PTA_GET_BOOT_LOG_SZ TEE_InvokeTACommand
+				returned 0x%x\n", (unsigned int)res);
 		return res;
 	}
 
@@ -180,11 +171,12 @@ static TEE_Result clear_bootlog(uint32_t param_types, TEE_Param params[4])
 		return TEE_ERROR_BAD_PARAMETERS;
 	}
 
-	res = TEE_InvokeTACommand (bootlog_pta_sess, 0, PTA_BOOT_LOG_CLEAR, exp_param_types, params, &origin);
+	res = TEE_InvokeTACommand(bootlog_pta_sess, 0, PTA_BOOT_LOG_CLEAR,
+			exp_param_types, params, &origin);
 
 	if (res != TEE_SUCCESS) {
-		EMSG("ERROR: TA PTA_CLEAR_BOOTLOG TEE_InvokeTACommand returned 0x%x\n",
-				(unsigned int)res);
+		EMSG("ERROR: TA PTA_CLEAR_BOOTLOG TEE_InvokeTACommand
+				returned 0x%x\n", (unsigned int)res);
 		return res;
 	}
 	return TEE_SUCCESS;
@@ -202,13 +194,13 @@ TEE_Result TA_InvokeCommandEntryPoint(void *sess_ctx, uint32_t cmd_id,
 	(void)&sess_ctx; /* Unused parameter */
 
 	switch (cmd_id) {
-		case TA_BOOT_LOG_GET_MSG:
-			return get_bootlog_message(param_types, params);
-		case TA_BOOT_LOG_GET_SIZE:
-			return get_bootlog_size(param_types, params);
-		case TA_BOOT_LOG_CLEAR:
-			return clear_bootlog(param_types, params);
-		default:
-			return TEE_ERROR_BAD_PARAMETERS;
+	case TA_BOOT_LOG_GET_MSG:
+		return get_bootlog_message(param_types, params);
+	case TA_BOOT_LOG_GET_SIZE:
+		return get_bootlog_size(param_types, params);
+	case TA_BOOT_LOG_CLEAR:
+		return clear_bootlog(param_types, params);
+	default:
+		return TEE_ERROR_BAD_PARAMETERS;
 	}
 }
