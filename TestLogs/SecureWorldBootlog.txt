@@ -1,0 +1,106 @@
+listening on port 54321
+soc_term: accepted fd 4
+soc_term: read fd EOF
+soc_term: accepted fd 4
+D/TC:0   boot_log_init:53 Bootlog setup done in core.
+D/TC:0   console_init:112 Boot logging initialized
+D/TC:0   add_phys_mem:571 VCORE_UNPG_RX_PA type TEE_RAM_RX 0x0e100000 size 0x0007e000
+D/TC:0   add_phys_mem:571 VCORE_UNPG_RW_PA type TEE_RAM_RW 0x0e17e000 size 0x00182000
+D/TC:0   add_phys_mem:571 TA_RAM_START type TA_RAM 0x0e300000 size 0x00d00000
+D/TC:0   add_phys_mem:571 TEE_SHMEM_START type NSEC_SHM 0x7fe00000 size 0x00200000
+D/TC:0   add_phys_mem:571 ROUNDDOWN(0x09040000, CORE_MMU_PGDIR_SIZE) type IO_SEC 0x09000000 size 0x00100000
+D/TC:0   add_phys_mem:571 ROUNDDOWN(0x0e000000, CORE_MMU_PGDIR_SIZE) type IO_SEC 0x0e000000 size 0x00100000
+D/TC:0   add_phys_mem:571 ROUNDDOWN((0x08000000 + 0), CORE_MMU_PGDIR_SIZE) type IO_SEC 0x08000000 size 0x00100000
+D/TC:0   add_phys_mem:571 ROUNDDOWN((0x08000000 + 0x10000), CORE_MMU_PGDIR_SIZE) type IO_SEC 0x08000000 size 0x00100000
+D/TC:0   add_phys_mem:585 Physical mem map overlaps 0x8000000
+D/TC:0   add_phys_mem:571 CFG_TEE_BOOT_LOG_START type IO_SEC 0x0f000000 size 0x00100000
+D/TC:0   add_va_space:611 type RES_VASPACE size 0x00a00000
+D/TC:0   add_va_space:611 type SHM_VASPACE size 0x02000000
+D/TC:0   init_mem_map:1135 Mapping core at 0xa1e47000 offs 0x93d47000
+D/TC:0   dump_mmap_table:724 type IDENTITY_MAP_RX va 0x0e100000..0x0e100fff pa 0x0e100000..0x0e100fff size 0x00001000 (smallpg)
+D/TC:0   dump_mmap_table:724 type NSEC_SHM     va 0x9de00000..0x9dffffff pa 0x7fe00000..0x7fffffff size 0x00200000 (pgdir)
+D/TC:0   dump_mmap_table:724 type IO_SEC       va 0x9e000000..0x9e0fffff pa 0x0f000000..0x0f0fffff size 0x00100000 (pgdir)
+D/TC:0   dump_mmap_table:724 type TA_RAM       va 0x9e100000..0x9edfffff pa 0x0e300000..0x0effffff size 0x00d00000 (pgdir)
+D/TC:0   dump_mmap_table:724 type IO_SEC       va 0x9ef00000..0x9effffff pa 0x0e000000..0x0e0fffff size 0x00100000 (pgdir)
+D/TC:0   dump_mmap_table:724 type IO_SEC       va 0x9f000000..0x9f0fffff pa 0x09000000..0x090fffff size 0x00100000 (pgdir)
+D/TC:0   dump_mmap_table:724 type IO_SEC       va 0x9f100000..0x9f1fffff pa 0x08000000..0x080fffff size 0x00100000 (pgdir)
+D/TC:0   dump_mmap_table:724 type RES_VASPACE  va 0x9f200000..0x9fbfffff pa 0x00000000..0x009fffff size 0x00a00000 (pgdir)
+D/TC:0   dump_mmap_table:724 type SHM_VASPACE  va 0x9fd00000..0xa1cfffff pa 0x00000000..0x01ffffff size 0x02000000 (pgdir)
+D/TC:0   dump_mmap_table:724 type TEE_RAM_RX   va 0xa1e47000..0xa1ec4fff pa 0x0e100000..0x0e17dfff size 0x0007e000 (smallpg)
+D/TC:0   dump_mmap_table:724 type TEE_RAM_RW   va 0xa1ec5000..0xa2046fff pa 0x0e17e000..0x0e2fffff size 0x00182000 (smallpg)
+D/TC:0   core_mmu_alloc_l2:272 L2 table used: 1/6
+D/TC:0   core_mmu_alloc_l2:272 L2 table used: 2/6
+D/TC:0   core_mmu_alloc_l2:272 L2 table used: 3/6
+D/TC:0   core_mmu_alloc_l2:272 L2 table used: 4/6
+D/TC:0   console_init:112 Boot logging initialized
+I/TC: 
+I/TC: Non-secure external DT found
+D/TC:0 0 carve_out_phys_mem:299 No need to carve out 0xe100000 size 0x200000
+D/TC:0 0 carve_out_phys_mem:299 No need to carve out 0xe300000 size 0xd00000
+D/TC:0 0 dt_add_psci_node:776 PSCI Device Tree node already exists!
+I/TC: Switching console to device: /pl011@9040000
+I/TC: OP-TEE version: 3.15.0-236-g7b06f6ca-dev (gcc version 10.2.1 20201103 (GNU Toolchain for the A-profile Architecture 10.2-2020.11 (arm-10.16))) #1 Thu Dec 30 08:40:36 UTC 2021 arm
+I/TC: WARNING: This OP-TEE configuration might be insecure!
+I/TC: WARNING: Please check https://optee.readthedocs.io/en/latest/architecture/porting_guidelines.html
+I/TC: Primary CPU initializing
+D/TC:0 0 boot_init_primary_late:1293 Executing at offset 0x93d47000 with virtual load address 0xa1e47000
+D/TC:0 0 call_preinitcalls:21 level 2 mobj_mapped_shm_init()
+D/TC:0 0 mobj_mapped_shm_init:449 Shared memory address range: 9fd00000, a1d00000
+D/TC:0 0 call_initcalls:40 level 1 register_time_source()
+D/TC:0 0 call_initcalls:40 level 1 teecore_init_pub_ram()
+D/TC:0 0 call_initcalls:40 level 2 probe_dt_drivers_early()
+D/TC:0 0 call_initcalls:40 level 3 check_ta_store()
+D/TC:0 0 check_ta_store:408 TA store: "Secure Storage TA"
+D/TC:0 0 check_ta_store:408 TA store: "REE"
+D/TC:0 0 call_initcalls:40 level 3 verify_pseudo_tas_conformance()
+D/TC:0 0 call_initcalls:40 level 3 tee_cryp_init()
+D/TC:0 0 call_initcalls:40 level 4 tee_fs_init_key_manager()
+D/TC:0 0 call_initcalls:40 level 5 init_console_itr()
+D/TC:0 0 gic_it_set_cpu_mask:288 cpu_mask: writing 0xff to 0x9f100828
+D/TC:0 0 gic_it_set_cpu_mask:290 cpu_mask: 0xff
+D/TC:0 0 gic_it_set_prio:302 prio: writing 0x1 to 0x9f100428
+D/TC:0 0 call_initcalls:40 level 5 probe_dt_drivers()
+D/TC:0 0 call_initcalls:40 level 6 mobj_init()
+D/TC:0 0 call_initcalls:40 level 6 default_mobj_init()
+D/TC:0 0 call_initcalls:40 level 7 release_probe_lists()
+D/TC:0 0 call_finalcalls:59 level 1 release_external_dt()
+I/TC: Primary CPU switching to normal world boot
+D/TC:0   psci_cpu_on:257 core pos: 1: ns_entry 0x401015e0
+I/TC: Secondary CPU 1 initializing
+I/TC: Secondary CPU 1 switching to normal world boot
+D/TC:1   tee_entry_exchange_capabilities:100 Asynchronous notifications are enabled
+D/TC:1   tee_entry_exchange_capabilities:109 Dynamic shared memory is enabled
+D/TC:1 0 core_mmu_alloc_l2:272 L2 table used: 5/6
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA 7011a688-ddde-4053-a5a9-7b3c4ddf13b8
+D/TC:? 0 tee_ta_init_pseudo_ta_session:312 Open device.pta
+D/TC:? 0 tee_ta_init_pseudo_ta_session:329 device.pta : 7011a688-ddde-4053-a5a9-7b3c4ddf13b8
+D/TC:? 0 tee_ta_close_session:512 csess 0xa1ee0da8 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_session_with_context:607 Re-open TA 7011a688-ddde-4053-a5a9-7b3c4ddf13b8
+D/TC:? 0 tee_ta_close_session:512 csess 0xa1ee0ca0 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA 60276949-7ff3-4920-9bce-840c9dcf3098
+D/TC:? 0 tee_ta_init_pseudo_ta_session:312 Open pta.bootlog
+D/TC:? 0 tee_ta_init_pseudo_ta_session:329 pta.bootlog : 60276949-7ff3-4920-9bce-840c9dcf3098
+D/TC:? 0 invoke_command:143 command entry point[2] for "pta.bootlog"
+D/TC:0 0 core_mmu_alloc_l2:272 L2 table used: 6/6
+D/TC:? 0 invoke_command:143 command entry point[1] for "pta.bootlog"
+D/TC:? 0 get_boot_log_message:86 buf 0x9fd01000 sz 0x1833
+D/TC:? 0 tee_ta_close_session:512 csess 0xa1ee0ca0 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_session_with_context:607 Re-open TA 60276949-7ff3-4920-9bce-840c9dcf3098
+D/TC:? 0 invoke_command:143 command entry point[2] for "pta.bootlog"
+D/TC:? 0 tee_ta_close_session:512 csess 0xa1ee0b98 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_session_with_context:607 Re-open TA 60276949-7ff3-4920-9bce-840c9dcf3098
+D/TC:? 0 invoke_command:143 command entry point[3] for "pta.bootlog"
+D/TC:? 0 tee_ta_close_session:512 csess 0xa1ee0b98 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_session_with_context:607 Re-open TA 60276949-7ff3-4920-9bce-840c9dcf3098
+D/TC:? 0 invoke_command:143 command entry point[2] for "pta.bootlog"
+D/TC:? 0 invoke_command:143 command entry point[1] for "pta.bootlog"
+D/TC:? 0 get_boot_log_message:86 buf 0x9fd01000 sz 0x152
+D/TC:? 0 tee_ta_close_session:512 csess 0xa1ee0b98 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+
+
