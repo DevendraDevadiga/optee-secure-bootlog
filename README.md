@@ -4,6 +4,12 @@
 1MB of secure memory will be used to store the secure boot log and can be fetch and display from TA.
 In Linux, "dmesg" is the command to get the bootlog. Similarly "tmesg" - TEE Message command is provided for secure world.
 
+Implementation for storing the secure log and PTA for accessing that log is done in this repository:
+https://github.com/DevendraDevadiga/optee_os/tree/optee-secure-bootlog
+
+Check the commits for source code changes:
+https://github.com/DevendraDevadiga/optee_os/commits/optee-secure-bootlog
+
 
 Command to get normal world bootlog message and display:
 -------------------------------------------------------
