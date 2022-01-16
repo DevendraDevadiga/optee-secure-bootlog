@@ -12,8 +12,11 @@ https://github.com/DevendraDevadiga/optee_os/commits/optee-secure-bootlog
 
 In QEMU source code increase the secure memory to another 1MB as below (hw/arm/virt.c):
 https://github.com/qemu/qemu/blob/master/hw/arm/virt.c#L158
--    [VIRT_SECURE_MEM] =         { 0x0e000000, 0x01000000 },
-+    [VIRT_SECURE_MEM] =         { 0x0e000000, 0x01100000 },
+
+
+--    [VIRT_SECURE_MEM] =         { 0x0e000000, 0x01000000 },
+
+++    [VIRT_SECURE_MEM] =         { 0x0e000000, 0x01100000 },
 
 Command to get normal world bootlog message and display:
 -------------------------------------------------------
