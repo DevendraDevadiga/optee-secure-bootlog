@@ -21,18 +21,22 @@ It will download source code for below components:
 In Linux, "dmesg" is the command to get the bootlog. Similarly "tmesg" - TEE Message command is provided for secure world.
 
 Implementation for storing the secure log and PTA for accessing that log is done in this repository:
+
 https://github.com/DevendraDevadiga/optee_os/tree/optee-secure-bootlog
 
 Check the commits for source code changes:
+
 https://github.com/DevendraDevadiga/optee_os/commits/optee-secure-bootlog
 
 In QEMU source code increase the secure memory to another 1MB as below (hw/arm/virt.c):
+
 https://github.com/qemu/qemu/blob/master/hw/arm/virt.c#L158
 
-
+```ruby
 --    [VIRT_SECURE_MEM] =         { 0x0e000000, 0x01000000 },
 
 ++    [VIRT_SECURE_MEM] =         { 0x0e000000, 0x01100000 },
+```
 
 Command to get normal world bootlog message and display:
 -------------------------------------------------------
