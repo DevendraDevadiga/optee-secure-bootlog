@@ -1,5 +1,21 @@
 # OP-TEE Secure bootlog capture and display support for QEMUv7
 
+To get the source code for QEMU ARMv7 and build the source code follow the steps from below link:
+
+https://optee.readthedocs.io/en/latest/building/devices/qemu.html
+
+It will download source code for below components:
+```ruby
+* QEMU Source
+* ARM-Trusted-Firmware
+* OP-TEE OS
+* U-Boot
+* Linux 
+* Buildroot (File system)
+* OP-TEE Client
+* OP-TEE Test
+* OP-TEE Examples
+```
 
 1MB of secure memory will be used to store the secure boot log and can be fetch and display from TA.
 In Linux, "dmesg" is the command to get the bootlog. Similarly "tmesg" - TEE Message command is provided for secure world.
