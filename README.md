@@ -1,5 +1,11 @@
 # OP-TEE Secure bootlog capture and display support for QEMUv7
 
+(Note: This feature I tried to pull to OP-TEE mainline code. 
+But as this is only useful during developement stage and not in production this commit was ignored. 
+This is the link to PR
+https://github.com/OP-TEE/optee_os/pull/5081
+)
+
 To get the source code for QEMU ARMv7 and build the source code follow the steps from below link:
 
 https://optee.readthedocs.io/en/latest/building/devices/qemu.html
