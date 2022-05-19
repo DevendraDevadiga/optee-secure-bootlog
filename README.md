@@ -14,7 +14,7 @@ https://optee.readthedocs.io/en/latest/building/devices/qemu.html
 
 Refer this article for more information:
 
-bit.ly/3Kh2dRT
+https://bit.ly/3Kh2dRT
 
 Also provided video about OP-TEE:
 
