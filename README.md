@@ -12,6 +12,14 @@ To get the source code for QEMU ARMv7 and build the source code follow the steps
 
 https://optee.readthedocs.io/en/latest/building/devices/qemu.html
 
+Refer this article for more information:
+
+bit.ly/3Kh2dRT
+
+Also provided video about OP-TEE:
+
+https://youtube.com/playlist?list=PLrwOamjP8JAKZ3hIdH1z3hxvYSq7XoI8d
+
 It will download source code for below components:
 ```ruby
 * QEMU Source
