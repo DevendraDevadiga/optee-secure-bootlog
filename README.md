@@ -1,5 +1,10 @@
 # OP-TEE Secure bootlog capture and display support for QEMUv7
 
+
+Get more information on Quora Link below:
+
+https://howtorunopteeonqemuarmv8v7.quora.com/?invite_code=ym8C6ev4mVZUnJMl2s3J
+
 (Note: This feature I tried to pull to OP-TEE mainline code. 
 But as this is only useful during developement stage and not in production this commit was ignored. 
 This is the link to PR:
